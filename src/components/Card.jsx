@@ -1,21 +1,17 @@
 import React from 'react'
-import Avatar from './Avatar'
-import Detail from './Detail'
 
 function Card(props) {
     return (
-        <div>
-            <div className="card">
-                <div className="top">
-                    <p>{props.id}</p>
-                    <h2 className="name">{props.name}</h2>
-                    <Avatar scr={props.img} />
-                </div>
-                <div className="bottom ">
-                    <Detail info={props.tel} />
-                    <Detail info={props.email} />
-                </div>
-            </div>
+        <div className="term">
+            <dt>
+                <span className="emoji" role="img" aria-label="Tense Biceps">
+                    {props.emoji}
+                </span>
+                <span>{props.name}</span>
+            </dt>
+            <dd>
+                {props.meaning}
+            </dd>
         </div>
     )
 }
