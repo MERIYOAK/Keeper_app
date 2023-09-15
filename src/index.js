@@ -1,22 +1,57 @@
+//CHALLENGE: uncomment the code below and see the car stats rendered
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
+import cars from "./practice";
+//import animals, { useAnimals } from "./data";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// //Destructing arrays
+// console.log(animals);
+// const [cat, dog] = animals;
+// console.log(cat);
 
-//Challenge:
-//1. Given that you can get the current time using:
-let time = new Date().toLocaleTimeString();
-console.log(time);
-//Show the latest time in the <h1> when the Get Time button
-//is pressed.
+// //Destructuring objects
+// //const {name, sounds} = cat;
+// const {name: catName, sounds: catSound, feedingRequirments: {food, water}} = cat;
+// const {name = "Fluffy", sounds = "Purr"} = cat;
+// //const {feedingRequirments: {food, water}} = cat;
 
-//2. Given that you can get code to be called every second
-//using the setInterval method.
-//Can you get the time in your <h1> to update every second?
 
-//e.g. uncomment the code below to see Hey printed every second.
-// function sayHi() {
-//   console.log("Hey");
-// }
-// setInterval(sayHi, 1000);
+// const [animal, makeSound] = useAnimals(cat);
+// console.log(animal);
+// makeSound();
+
+const [honda, tesla] = cars;
+
+const { speedStats: { topSpeed: hondaTopSpeed } } = honda;
+const { speedStats: { topSpeed: teslaTopSpeed } } = tesla;
+
+const { coloursByPopularity: [hondaTopColour] } = honda;
+const { coloursByPopularity: [teslaTopColour] } = tesla;
+
+
+
+ReactDOM.render(
+    <table>
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Top Speed</th>
+                <th>Top Colour</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{tesla.model}</td>
+                <td>{teslaTopSpeed}</td>
+                <td>{teslaTopColour}</td>
+            </tr>
+            <tr>
+                <td>{honda.model}</td>
+                <td>{hondaTopSpeed}</td>
+                <td>{hondaTopColour}</td>
+            </tr>
+        </tbody>
+
+    </table>,
+    document.getElementById("root")
+);
