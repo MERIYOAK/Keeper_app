@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 
-
 function App() {
-    const [count, setCount] = useState(0);
+    const options = { hour12: false };
+    const [time, setTime] = useState(new Date().toLocaleTimeString(undefined, options));
 
-    function increment() {
-        setCount(count + 1);
+    function timeSetter() {
+        setTime(new Date().toLocaleTimeString(undefined, options));
     }
 
-    function decrement() {
-        setCount(count - 1);
+    function autoUpdate() {
+        setInterval(timeSetter, 1000)
     }
 
     return (
         <div className="container">
-            <h1>{count}</h1>
-            <button onClick={increment}>+</button>
-            <button onClick={decrement}>-</button>
+            <h1>{time}</h1>
+            <button onClick={autoUpdate}>Get Time</button>
         </div>
     );
 }
