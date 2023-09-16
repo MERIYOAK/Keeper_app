@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 
 function App() {
-    const [fullName, setFullName] = useState({
+    const [contact, setContact] = useState({
         fName: "",
-        lName: ""
-    })
+        lName: "",
+        email: ""
+    });
 
-    function handleName(event) {
-        const { value, name } = event.target;
+    function handleChange(event) {
+        const { name, value } = event.target;
 
-        setFullName(prevValue => {
+        setContact(prevValue => {
             if (name === "fName") {
                 return {
                     fName: value,
-                    lName: prevValue.lName
+                    lName: prevValue.lName,
+                    email: prevValue.email
                 };
             } else if (name === "lName") {
                 return {
                     fName: prevValue.fName,
-                    lName: value
+                    lName: value,
+                    email: prevValue.email
+                };
+            } else if (name === "email") {
+                return {
+                    fName: prevValue.fName,
+                    lName: prevValue.lName,
+                    email: value
                 };
             }
         })
@@ -26,10 +35,14 @@ function App() {
 
     return (
         <div className="container">
-            <h1>Hello {fullName.fName} {fullName.lName} </h1>
+            <h1>
+                Hello {contact.fName} {contact.lName}
+            </h1>
+            <p>{contact.email}</p>
             <form>
-                <input onChange={handleName} name="fName" placeholder="First Name" value={fullName.fName} />
-                <input onChange={handleName} name="lName" placeholder="Last Name" value={fullName.lName} />
+                <input name="fName" placeholder="First Name" value={contact.fName} onChange={handleChange} />
+                <input name="lName" placeholder="Last Name" value={contact.lName} onChange={handleChange} />
+                <input name="email" placeholder="Email" value={contact.email} onChange={handleChange} />
                 <button>Submit</button>
             </form>
         </div>
